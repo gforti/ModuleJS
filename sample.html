@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Gabriel N Forti - Module JS Sample</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			div {
+				border: 5px solid black;
+				cursor: pointer;
+			}
+		</style>
+    </head>
+    <body>
+	
+	<div id="sample">
+		<h1>This is a sample, click me to change the color of the text.</h1>
+	</div>
+	
+	
+	
+	
+	<script src="module.js"></script>
+	<script src="module-event.js"></script>	
+	<script src="module-css.js"></script>
+	
+	
+	<script type="text/javascript">
+	
+		/* 	There are some improvements that can be made
+			with the inheritance of the objects that are
+			used and passed		
+		*/
+	
+		Dom.extend({	
+			"getRandHexColor" : function() {
+				return '#' + Math.random().toString(16).substring(2, 8);
+			}
+		});
+		
+		
+		Dom.func.extend({
+			"randC" : function() { 
+				var func = function(o){						
+						Dom.css(o,{'color': Dom.getRandHexColor(), 'border-color' : Dom.getRandHexColor()}); 
+					}; 
+					Dom.each(this, func ); 
+				return this; 
+			}	
+		});
+		
+		Dom("sample").event('click',function(o) {
+			Dom(o).randC();
+		});
+		
+	
+	
+		
+		
+		
+	</script>
+	</body>
+</html>
